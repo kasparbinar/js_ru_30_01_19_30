@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
+import CommentList from './CommentList'
 
 export default class Article extends Component {
     state = {
-        isOpen: false
+        isOpen: false,
+        isOpenComments: false
     }
 /*
     constructor(props) {
@@ -15,11 +17,12 @@ export default class Article extends Component {
 
     render() {
         const {article} = this.props
-        console.log('---', 123)
         return (
             <div>
                 <h3 onClick={this.handleClick}>{article.title}</h3>
                 {this.getBody()}
+                {this.getButton()}
+                {this.getComments()}
             </div>
         )
     }
@@ -34,9 +37,32 @@ export default class Article extends Component {
         )
     }
 
+    getComments() {
+        if (!this.state.isOpen || !this.state.isOpenComments) return null
+
+        return (
+            <CommentList comments={this.props.article.comments}/>
+        )
+    }
+
+    getButton() {
+        if (!this.state.isOpen || this.props.article.comments == undefined){
+            return null;
+        }
+        return (
+            <button onClick={this.handleClickComment}>{this.state.isOpenComments ? 'Hide comments' : 'Show comments'}</button>
+        )
+    }
+
     handleClick = (ev) => {
         this.setState({
             isOpen: !this.state.isOpen
+        })
+    }
+
+    handleClickComment = (ev) => {
+        this.setState({
+            isOpenComments: !this.state.isOpenComments
         })
     }
 }
