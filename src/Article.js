@@ -4,6 +4,7 @@ import CommentList from './CommentList'
 export default class Article extends Component {
     state = {
         isOpen: false,
+      //Лучше внести этот стейт в CommentList
         isOpenComments: false
     }
 /*
