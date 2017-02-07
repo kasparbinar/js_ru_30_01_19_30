@@ -8,7 +8,9 @@ class Article extends Component {
             title: PropTypes.string.isRequired,
             text: PropTypes.string.isRequired,
             comments: PropTypes.array
-        }).isRequired
+        }).isRequired,
+        toggleOpen: PropTypes.func.isRequired,
+        isOpen: PropTypes.bool.isRequired
     }
 
     render() {
@@ -32,6 +34,7 @@ class Article extends Component {
             </section>
         )
     }
+
 }
 
 export default Article
