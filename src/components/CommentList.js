@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Comment from './Comment'
+import AddComment from './AddComment'
 
 class CommentList extends Component {
     static propTypes = {
@@ -31,6 +32,7 @@ class CommentList extends Component {
             <div>
                 <a href="#" onClick={this.toggleOpen}>{actionText} comments</a>
                 {this.getBody()}
+
             </div>
         )
     }
@@ -42,7 +44,12 @@ class CommentList extends Component {
         if (!comments.length) return <h3>No comments yet</h3>
 
         const commentItems = comments.map(comment => <li key={comment.id}><Comment comment={comment} /></li>)
-        return <ul>{commentItems}</ul>
+        return (
+            <div>
+                <ul>{commentItems}</ul>
+                <AddComment />
+            </div>
+        )
     }
 
     toggleOpen = ev => {
