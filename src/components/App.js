@@ -1,9 +1,9 @@
 import React, { PropTypes, Component } from 'react'
 import ArticleList from './ArticleList'
 import Chart from './Chart'
-import Select from 'react-select'
+import SelectTitle from './SelectTitle'
 import DateRange from './DateRange'
-import 'react-select/dist/react-select.css'
+import {articles as defaultArticles} from '../fixtures'
 import Counter from './Counter'
 import {connect} from 'react-redux'
 
@@ -15,15 +15,12 @@ class App extends Component {
 
     render() {
         const {articles} = this.props
-        const options = articles.map(article => ({
-            label: article.title,
-            value: article.id
-        }))
+
         return (
             <div>
                 <Counter/>
                 User: <input type="text" value={this.state.user} onChange={this.handleUserChange}/>
-                <Select options = {options} onChange={this.handleSelectChange} value={this.state.selection} multi/>
+                <SelectTitle articles={defaultArticles} />
                 <DateRange />
                 <ArticleList articles={articles}/>
                 <Chart articles={articles}/>
@@ -31,7 +28,7 @@ class App extends Component {
         )
     }
 
-    handleSelectChange = selection => this.setState({ selection })
+
 
     handleUserChange = (ev) => {
         if (ev.target.value.length < 10) {
