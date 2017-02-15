@@ -7,6 +7,9 @@ export default (articles = defaultArticles, action) => {
     switch (type) {
         case DELETE_ARTICLE:
             return articles.filter(article => article.id !== payload.id)
+            //вспомни, что редюсеры - чистые функции, нельзя брать внешние переменные
+            //по сути ты удаляешь статьи, а должен хранить здесь список всех статей, а фильтровать где-то в другом месте(например в коннекте)
+            //А еще надо было значения фильтров хранить в сторе
         case FILTER_NAME_ARTICLE:
             console.log(defaultArticles.length);
             if(payload.names.length > 0){
